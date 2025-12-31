@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account - Bereket International Hotel</title>
+  <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="asset/icon/favicon.ico" />
+  <style>
+    .account-container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 20px;
+    }
+    
+    .account-tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid #eee;
+    }
+    
+    .tab-btn {
+      padding: 1rem 2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #666;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s;
+    }
+    
+    .tab-btn.active {
+      color: #ff6b35;
+      border-bottom-color: #ff6b35;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .account-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      margin-bottom: 2rem;
+    }
+    
+    .login-prompt {
+      text-align: center;
+      padding: 3rem;
+    }
+    
+    .order-history-item {
+      padding: 1.5rem;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .order-history-item:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+  
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <h2>Bereket International Hotel</h2>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="cart.html">Cart <span id="cart-count">0</span></a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="account.html" class="active">My Account</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Account Section -->
+  <section class="account-section" style="padding: 40px 20px; background-image: url(asset/image/form.jpg);
+        background-repeat: no-repeat; background-position:bottom;
+        background-size: cover; position: relative; z-index: 1; min-height: 100vh;">
+    <div class="account-container">
+      <h1 style="text-align: center; margin-bottom: 2rem; background-color:#eee; border-radius:10px;">My Account</h1>
+      
+      
+      <div id="auth-section" class="account-card">
+        <div class="account-tabs">
+          <button class="tab-btn active" onclick="switchTab('login')">Login</button>
+          <button class="tab-btn" onclick="switchTab('register')">Register</button>
+        </div>
+        
+        
+        <div id="login-tab" class="tab-content active">
+          <h2>Login to Your Account</h2>
+          <form id="login-form" class="account-form">
+            <div class="form-group">
+              <label for="login-email">Email</label>
+              <input type="email" id="login-email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="login-password">Password</label>
+              <input type="password" id="login-password" name="password" required>
+            </div>
+            <button type="submit" class="btn-primary">Login</button>
+          </form>
+        </div>
+        
+        
+        <div id="register-tab" class="tab-content">
+          <h2>Create New Account</h2>
+          <form id="register-form" class="account-form">
+            <div class="form-group">
+              <label for="reg-name">Full Name</label>
+              <input type="text" id="reg-name" name="full_name" required>
+            </div>
+            <div class="form-group">
+              <label for="reg-email">Email</label>
+              <input type="email" id="reg-email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="reg-phone">Phone (Optional)</label>
+              <input type="tel" id="reg-phone" name="phone">
+            </div>
+            <div class="form-group">
+              <label for="reg-password">Password</label>
+              <input type="password" id="reg-password" name="password" required minlength="6">
+              <small>Minimum 6 characters</small>
+            </div>
+            <div class="form-group">
+              <label for="reg-confirm-password">Confirm Password</label>
+              <input type="password" id="reg-confirm-password" name="confirm_password" required minlength="6">
+            </div>
+            <button type="submit" class="btn-primary">Register</button>
+          </form>
+        </div>
+      </div>
+      
+      
+      <div id="account-dashboard" class="account-card" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+          <h2>Welcome, <span id="customer-name"></span></h2>
+          <button onclick="logout()" class="btn-secondary">Logout</button>
+        </div>
+        
+        <div class="account-tabs">
+          <button class="tab-btn active" onclick="switchAccountTab('profile')">Profile</button>
+          <button class="tab-btn" onclick="switchAccountTab('orders')">Order History</button>
+        </div>
+        
+        
+        <div id="profile-tab" class="tab-content active">
+          <h3>Profile Information</h3>
+          <form id="profile-form" class="account-form">
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" id="profile-email" readonly>
+            </div>
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" id="profile-name">
+            </div>
+            <div class="form-group">
+              <label>Phone</label>
+              <input type="tel" id="profile-phone">
+            </div>
+            <button type="submit" class="btn-primary">Update Profile</button>
+          </form>
+        </div>
+        
+        
+        <div id="orders-tab" class="tab-content">
+          <h3>Order History</h3>
+          <div id="order-history">
+            <p>Loading orders...</p>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="account-card" style="margin-top: 1rem;">
+        <h2>Admin Access</h2>
+        <p id="admin-paragp">If you are an administrator, use the button below to open the admin login panel.</p>
+        <a href="admin/login.php" class="btn-primary">Go to Admin Login</a>
+      </div>
+    </div>
+  </section>
+
+  
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Bereket International Hotel</h3>
+          <p>Your trusted partner for quality food delivery.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="about.html">About Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>Email: berekethotel@gmail.com</p>
+          <p>Phone: 09236534523</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Bereket International Hotel. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script>
+    // Check authentication on load
+    checkAuth();
+    
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      
+      if (tab === 'login') {
+        document.querySelectorAll('.tab-btn')[0].classList.add('active');
+        document.getElementById('login-tab').classList.add('active');
+      } else {
+        document.querySelectorAll('.tab-btn')[1].classList.add('active');
+        document.getElementById('register-tab').classList.add('active');
+      }
+    }
+    
+    function switchAccountTab(tab) {
+      document.querySelectorAll('#account-dashboard .tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('#account-dashboard .tab-content').forEach(content => content.classList.remove('active'));
+      
+      if (tab === 'profile') {
+        document.querySelectorAll('#account-dashboard .tab-btn')[0].classList.add('active');
+        document.getElementById('profile-tab').classList.add('active');
+      } else {
+        document.querySelectorAll('#account-dashboard .tab-btn')[1].classList.add('active');
+        document.getElementById('orders-tab').classList.add('active');
+        loadOrderHistory();
+      }
+    }
+    
+    async function checkAuth() {
+      try {
+        const response = await fetch('php/check_auth.php');
+        const result = await response.json();
+        
+        if (result.success && result.authenticated) {
+          showDashboard(result.customer);
+        } else {
+          showAuthSection();
+        }
+      } catch (error) {
+        console.error('Auth check error:', error);
+        showAuthSection();
+      }
+    }
+    
+    function showDashboard(customer) {
+      document.getElementById('auth-section').style.display = 'none';
+      document.getElementById('account-dashboard').style.display = 'block';
+      document.getElementById('customer-name').textContent = customer.name;
+      document.getElementById('profile-email').value = customer.email;
+      document.getElementById('profile-name').value = customer.name;
+      document.getElementById('profile-phone').value = customer.phone || '';
+    }
+    
+    function showAuthSection() {
+      document.getElementById('auth-section').style.display = 'block';
+      document.getElementById('account-dashboard').style.display = 'none';
+    }
+    
+    // Login form
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      
+      try {
+        const response = await fetch('php/login.php', {
+          method: 'POST',
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'Accept': 'application/json'
+          },
+          body: formData
+        });
+        const result = await response.json();
+        
+        if (result.success) {
+          alert('Login successful!');
+          location.reload();
+        } else {
+          alert('Error: ' + result.message);
+        }
+      } catch (error) {
+        alert('An error occurred. Please try again.');
+      }
+    });
+    
+    // Register form
+    document.getElementById('register-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      
+      try {
+        const response = await fetch('php/register.php', {
+          method: 'POST',
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'Accept': 'application/json'
+          },
+          body: formData
+        });
+        const result = await response.json();
+        
+        if (result.success) {
+          alert('Registration successful! Please login.');
+          switchTab('login');
+          e.target.reset();
+        } else {
+          alert('Error: ' + result.message);
+        }
+      } catch (error) {
+        alert('An error occurred. Please try again.');
+      }
+    });
+    
+    async function logout() {
+      try {
+        const response = await fetch('php/logout.php');
+        const result = await response.json();
+        
+        if (result.success) {
+          location.reload();
+        }
+      } catch (error) {
+        console.error('Logout error:', error);
+      }
+    }
+    
+    async function loadOrderHistory() {
+      const orderHistory = document.getElementById('order-history');
+      orderHistory.innerHTML = '<p>Loading orders...</p>';
+      
+      // This would fetch orders from the database
+      // For now, showing a placeholder
+      orderHistory.innerHTML = '<p>No orders found. Start ordering to see your order history here!</p>';
+    }
+  </script>
+</body>
+</html>
+

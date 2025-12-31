@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - Bereket International Hotel</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="asset/icon/favicon.ico" />
+  </head>
+  <body>
+    
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo">
+          <h2>Bereket International Hotel</h2>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li>
+            <a href="cart.html">Cart <span id="cart-count">0</span></a>
+          </li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="account.html">My Account</a></li>
+        </ul>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    
+    <section class="checkout-section">
+      <div class="container">
+        <h1>Checkout</h1>
+
+        <div class="checkout-container">
+          <div class="checkout-form-container">
+            <form id="checkout-form" class="checkout-form">
+              <h2>Customer Information</h2>
+
+              <div class="form-group">
+                <label for="customer-name">Full Name *</label>
+                <input
+                  type="text"
+                  id="customer-name"
+                  name="customer_name"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="customer-email">Email *</label>
+                <input
+                  type="email"
+                  id="customer-email"
+                  name="customer_email"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="customer-phone">Phone Number *</label>
+                <input
+                  type="tel"
+                  id="customer-phone"
+                  name="customer_phone"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="delivery-address">Delivery Address *</label>
+                <textarea
+                  id="delivery-address"
+                  name="delivery_address"
+                  rows="3"
+                  required
+                ></textarea>
+              </div>
+
+              <h2>Payment Information</h2>
+
+              <div class="payment-info-box">
+                <h3>Pay via Commercial Bank of Ethiopia (CBE)</h3>
+                <div class="account-details">
+                  <p>
+                    <strong>Account Name:</strong> Bereket International Hotel
+                  </p>
+                  <p>
+                    <strong>Account Number:</strong>
+                    <span id="cbe-account">1000123456789</span>
+                  </p>
+                  <p><strong>Bank:</strong> Commercial Bank of Ethiopia</p>
+                </div>
+                <div class="payment-instructions">
+                  <p><strong>Instructions:</strong></p>
+                  <ol>
+                    <li>
+                      Transfer the exact amount shown below to the account above
+                    </li>
+                    <li>Take a screenshot of your payment transaction</li>
+                    <li>Upload the screenshot below</li>
+                  </ol>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="payment-amount">Amount to Pay</label>
+                <input
+                  type="text"
+                  id="payment-amount"
+                  readonly
+                  value="ETB 0.00"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="payment-screenshot">Payment Screenshot *</label>
+                <input
+                  type="file"
+                  id="payment-screenshot"
+                  name="payment_screenshot"
+                  accept="image/*"
+                  required
+                />
+                <small
+                  >Upload a screenshot of your CBE payment transaction</small
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="order-notes">Additional Notes (Optional)</label>
+                <textarea
+                  id="order-notes"
+                  name="order_notes"
+                  rows="3"
+                ></textarea>
+              </div>
+
+              <button type="submit" class="btn-primary btn-submit">
+                Place Order
+              </button>
+            </form>
+          </div>
+
+          <div class="order-summary-sidebar">
+            <h2>Order Summary</h2>
+            <div id="checkout-items">
+              <!-- Order items will be loaded here -->
+            </div>
+            <div class="summary-totals">
+              <div class="summary-item">
+                <span>Subtotal:</span>
+                <span id="checkout-subtotal">ETB 0.00</span>
+              </div>
+              <div class="summary-item">
+                <span>Delivery Fee:</span>
+                <span id="checkout-delivery">ETB 80.00</span>
+              </div>
+              <div class="summary-item total">
+                <span>Total:</span>
+                <span id="checkout-total">ETB 0.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Bereket International Hotel</h3>
+            <p>Your trusted partner for quality food delivery.</p>
+          </div>
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="menu.html">Menu</a></li>
+              <li><a href="about.html">About Us</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Contact</h3>
+            <p>Email: berekethotel@gmail.com</p>
+            <p>Phone: 09236534523</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Bereket International Hotel. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

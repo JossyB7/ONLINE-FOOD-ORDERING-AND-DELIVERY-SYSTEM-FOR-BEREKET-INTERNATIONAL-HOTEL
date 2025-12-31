@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart - Bereket International Hotel</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="asset/icon/favicon.ico" />
+  </head>
+  <body>
+    
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo">
+          <h2>Bereket International Hotel</h2>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li>
+            <a href="cart.html" class="active"
+              >Cart <span id="cart-count">0</span></a
+            >
+          </li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="account.html">My Account</a></li>
+        </ul>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    
+    <section class="cart-section">
+      <div class="container">
+        <h1>Your Cart</h1>
+
+        <div class="cart-container">
+          <div class="cart-items" id="cart-items">
+            <!-- Cart items will be loaded dynamically -->
+            <div class="empty-cart" id="empty-cart">
+              <p>Your cart is empty.</p>
+              <a href="menu.html" class="btn-primary">Browse Menu</a>
+            </div>
+          </div>
+
+          <div class="cart-summary" id="cart-summary">
+            <h2>Order Summary</h2>
+            <div class="summary-item">
+              <span>Subtotal:</span>
+              <span id="subtotal">ETB 0.00</span>
+            </div>
+            <div class="summary-item">
+              <span>Delivery Fee:</span>
+              <span id="delivery-fee">ETB 80.00</span>
+            </div>
+            <div class="summary-item total">
+              <span>Total:</span>
+              <span id="total">ETB 0.00</span>
+            </div>
+            <button class="btn-primary btn-checkout" id="checkout-btn" disabled>
+              Proceed to Checkout
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Bereket International Hotel</h3>
+            <p>Your trusted partner for quality food delivery.</p>
+          </div>
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="menu.html">Menu</a></li>
+              <li><a href="about.html">About Us</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Contact</h3>
+            <p>Email: berekethotel@gmail.com</p>
+            <p>Phone: 09236534523</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Bereket International Hotel. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
