@@ -1,11 +1,6 @@
--- Create database (comment out if database already exists or if running via phpMyAdmin)
--- CREATE DATABASE IF NOT EXISTS bereket_hotel_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
--- USE bereket_hotel_db;
+CREATE DATABASE IF NOT EXISTS bereket_hotel_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ USE bereket_hotel_db;
 
--- Note: If using phpMyAdmin or WAMP, create the database manually first, then select it before running this script
--- Or uncomment the lines above if running via command line
-
--- Menu Items Table
 CREATE TABLE IF NOT EXISTS menu_items (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
